@@ -1,3 +1,4 @@
+ALGORITHIMS FOR EACH FUNCTION
 int main(int argc, char *argv[])
 {
     - Immediately check if there is command line arguments for a batchfile name

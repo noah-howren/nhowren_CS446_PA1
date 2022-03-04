@@ -1,64 +1,24 @@
-from re import A
-import sys
-def main():
-    map_file_name = '/proc/cpuinfo'
-    try:
-        map_file = open('/proc/cpuinfo', 'r')
-    except IOError as e:
-            print('[ERROR] Cannot oepn file {}'.format(map_file_name))
-            sys.exit(1)
-        
-    for line in map_file:
-        f = open("nhowren_systemDetails.txt", 'a')
-        f.write(line)
+fin = open("/proc/cpuinfo", "r")
+procCPUINFO= fin.readlines()
 
+fin = open("/proc/version", "r")
+procDataVersion = fin.readlines()
 
-    map_file_name = '/proc/version'
-    try:
-        map_file = open('/proc/version', 'r')
-    except IOError as e:
-            print('[ERROR] Cannot oepn file {}'.format(map_file_name))
-            sys.exit(1)
-        
-    for line in map_file:
-        f = open("nhowren_systemDetails.txt", 'a')
-        f.write(line)
-    
-    
-    map_file_name = '/proc/uptime'
-    try:
-        map_file = open('/proc/uptime', 'r')
-    except IOError as e:
-            print('[ERROR] Cannot oepn file {}'.format(map_file_name))
-            sys.exit(1)
-        
-    for line in map_file:
-        f = open("nhowren_systemDetails.txt", 'a')
-        f.write(line)
-    
+fin = open('/proc/uptime', 'r')
+procUptime = fin.readlines()
 
-    map_file_name = '/proc/diskstats'
-    try:
-        map_file = open( '/proc/diskstats', 'r')
-    except IOError as e:
-            print('[ERROR] Cannot oepn file {}'.format(map_file_name))
-            sys.exit(1)
-        
-    for line in map_file:
-        f = open("nhowren_systemDetails.txt", 'a')
-        f.write(line)
+fin = open('/proc/diskstats', 'r')
+procDiskStats = fin.readlines()
 
+fin = open('/proc/stat', 'r')
+procStat = fin.readlines()
 
-    map_file_name = '/proc/stat'
-    try:
-        map_file = open( '/proc/stat', 'r')
-    except IOError as e:
-            print('[ERROR] Cannot oepn file {}'.format(map_file_name))
-            sys.exit(1)
-        
-    for line in map_file:
-        f = open("nhowren_systemDetails.txt", 'a')
-        f.write(line)
+out = open("nhowren_systemDetails.txt", "w")
+out.writelines(procCPUINFO)
+out.writelines(procDataVersion) 
+out.writelines(procUptime)
+out.writelines(procDiskStats)
+out.writelines(procStat)
 
-if __name__ == '__main__':
-    main()
+fin.close()
+out.close()
